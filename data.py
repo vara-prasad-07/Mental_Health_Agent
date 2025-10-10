@@ -7,7 +7,9 @@ import os
 import json
 
 firebase_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
-
+if not firebase_json:
+    raise ValueError("❌ GOOGLE_APPLICATION_CREDENTIALS_JSON is not set in environment")
+    
 class FirestoreClient:
     def __init__(self):
         # Initialize Firebase Admin SDK
@@ -142,4 +144,5 @@ class FirestoreClient:
         except Exception as e:
             print(f"Error deleting session for uid {uid}, session {session_id}: {str(e)}")
             raise e
+
 
