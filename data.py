@@ -6,7 +6,7 @@ from datetime import datetime
 import os
 import json
 
-firebase_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
+firebase_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 if not firebase_json:
     raise ValueError("❌ GOOGLE_APPLICATION_CREDENTIALS_JSON is not set in environment")
     
@@ -144,5 +144,6 @@ class FirestoreClient:
         except Exception as e:
             print(f"Error deleting session for uid {uid}, session {session_id}: {str(e)}")
             raise e
+
 
 
