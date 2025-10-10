@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Get API key from environment variable
-api_key = os.getenv("GOOGLE_AI_API_KEY", "AIzaSyBEr4igZrrbH8CGT8RI3L1n0KeCyK_Em6M")
+api_key = os.getenv("GOOGLE_AI_API_KEY")
 client = genai.Client(api_key=api_key)
 
 class LLM:
@@ -80,4 +80,5 @@ class LLM:
         prompt_parts.append(f"\nCurrent User Query: {user_query}")
         prompt_parts.append("\nPlease provide a helpful, empathetic response as a mental health assistant:")
         
+
         return "\n".join(prompt_parts)
