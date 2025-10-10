@@ -4,13 +4,17 @@ from firebase_admin import firestore
 from typing import Optional, Dict, Any, List
 from datetime import datetime
 import os
+import json
+
+firebase_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
 
 class FirestoreClient:
     def __init__(self):
         # Initialize Firebase Admin SDK
         if not firebase_admin._apps:
             # Path to your service account key file
-            cred = credentials.Certificate("serviceAccountKey.json")
+            cred_dict = json.loads(firebase_json)
+            cred = credentials.Certificate(cred_dict)
             firebase_admin.initialize_app(cred)
         
         # Initialize Firestore client
@@ -138,3 +142,4 @@ class FirestoreClient:
         except Exception as e:
             print(f"Error deleting session for uid {uid}, session {session_id}: {str(e)}")
             raise e
+
