@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: mental-health-ai-agent
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GOOGLE_AI_API_KEY
+        value: AIzaSyBEr4igZrrbH8CGT8RI3L1n0KeCyK_Em6M
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        value: ./serviceAccountKey.json
+      - key: PYTHONPATH
+        value: .
+    autoDeploy: true
+    branch: main
+    healthCheckPath: /
+    disk:
+      name: mental-health-ai-disk
+      mountPath: /opt/render/project/src
+      sizeGB: 1
