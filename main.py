@@ -12,7 +12,8 @@ app = FastAPI()
 origins = [
     "https://mental-health-agent-0oib.onrender.com",  
     "https://your-frontend-domain.com",               
-    "http://localhost:3000",                         
+    "http://localhost:3000",
+    "https://arasie.vercel.app",                         
 ]
 
 
