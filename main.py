@@ -5,8 +5,24 @@ from uuid import uuid4
 from datetime import datetime
 import os
 import json
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "https://mental-health-agent-0oib.onrender.com",  
+    "https://your-frontend-domain.com",               
+    "http://localhost:3000",                         
+]
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,           
+    allow_credentials=True,
+    allow_methods=["*"],            
+    allow_headers=["*"],            
+)
 
 llm = LLM()
 firestore_client = FirestoreClient()
@@ -108,6 +124,7 @@ async def get_all_sessions(uid: str):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+
 
 
 
