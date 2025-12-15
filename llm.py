@@ -11,7 +11,7 @@ api_key = os.getenv("GOOGLE_AI_API_KEY")
 client = genai.Client(api_key=api_key)
 
 class LLM:
-    def __init__(self, model="gemini-2.0-flash-exp"):
+    def __init__(self, model="gemini-2.5-flash"):
         self.model = model
         self.mental_health_instructions = """
         You are a compassionate and professional mental health assistant. 
@@ -74,3 +74,4 @@ Guidelines:
         
 
         return "\n".join(prompt_parts)
+
